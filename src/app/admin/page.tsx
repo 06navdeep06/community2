@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import UnsplashImagePicker from "@/components/UnsplashImagePicker";
 import { 
   AlertCircle, 
   CheckCircle, 
@@ -506,13 +507,10 @@ export default function AdminDashboard() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="edit-image">Image URL (optional)</Label>
-                      <Input
-                        id="edit-image"
-                        value={editingPost.imageUrl || ''}
-                        onChange={(e) => setEditingPost({...editingPost, imageUrl: e.target.value})}
-                        className="bg-green-700 border-green-600 text-white"
-                        placeholder="https://example.com/image.jpg"
+                      <Label htmlFor="edit-image">Select an Image</Label>
+                      <UnsplashImagePicker
+                        onImageSelect={(imageUrl) => setEditingPost({...editingPost, imageUrl})}
+                        selectedImageUrl={editingPost.imageUrl}
                       />
                     </div>
                     <div className="flex gap-2 justify-end">
@@ -555,13 +553,10 @@ export default function AdminDashboard() {
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="new-image">Image URL (optional)</Label>
-                      <Input
-                        id="new-image"
-                        value={newBlogPost.imageUrl}
-                        onChange={(e) => setNewBlogPost({...newBlogPost, imageUrl: e.target.value})}
-                        className="bg-green-700 border-green-600 text-white"
-                        placeholder="https://example.com/image.jpg"
+                      <Label htmlFor="new-image">Select an Image</Label>
+                      <UnsplashImagePicker
+                        onImageSelect={(imageUrl) => setNewBlogPost({...newBlogPost, imageUrl})}
+                        selectedImageUrl={newBlogPost.imageUrl}
                       />
                     </div>
                     <div className="flex justify-end">

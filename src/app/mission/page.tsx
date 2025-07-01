@@ -76,7 +76,7 @@ export default async function Mission() {
             <Heart className="h-8 w-8 text-green-600" />
             <h1 className="text-4xl md:text-5xl font-bold text-green-700">Our Mission</h1>
           </div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-700 max-w-2xl mx-auto">
             Working together to create lasting positive change in communities across Nepal
           </p>
         </div>
@@ -86,21 +86,21 @@ export default async function Mission() {
             <CardTitle className="text-3xl font-bold text-gray-800">
               Empowering Communities Across Nepal
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-gray-700">
               A holistic approach to sustainable development
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <p className="text-lg text-gray-700">
+            <p className="text-lg text-gray-800">
               The Nepal Community Fund is dedicated to supporting sustainable development and empowering communities 
               across Nepal. We believe in a holistic approach that addresses the interconnected challenges 
               facing rural communities, with a focus on education, healthcare, and sustainable infrastructure.
             </p>
-            <p className="text-lg text-gray-700">
+            <p className="text-lg text-gray-800">
               Our mission is to create lasting positive change by working directly with local communities, 
               understanding their unique needs, and implementing projects that build capacity and self-sufficiency.
             </p>
-            <p className="text-lg text-gray-700">
+            <p className="text-lg text-gray-800">
               We are committed to transparency, accountability, and maximizing the impact of every donation 
               we receive. By partnering with local organizations and leveraging community knowledge, 
               we ensure that our projects are culturally appropriate and sustainable in the long term.
@@ -110,17 +110,17 @@ export default async function Mission() {
               <div className="bg-green-50 p-4 rounded-lg flex flex-col items-center text-center">
                 <Globe className="h-10 w-10 text-green-600 mb-2" />
                 <h3 className="font-bold text-gray-800">Sustainable Development</h3>
-                <p className="text-sm text-gray-600">Creating long-term solutions that respect the environment</p>
+                <p className="text-sm text-gray-700">Creating long-term solutions that respect the environment</p>
               </div>
               <div className="bg-green-50 p-4 rounded-lg flex flex-col items-center text-center">
                 <CheckCircle className="h-10 w-10 text-green-600 mb-2" />
                 <h3 className="font-bold text-gray-800">Transparency</h3>
-                <p className="text-sm text-gray-600">Full accountability for all donations and project outcomes</p>
+                <p className="text-sm text-gray-700">Full accountability for all donations and project outcomes</p>
               </div>
               <div className="bg-green-50 p-4 rounded-lg flex flex-col items-center text-center">
                 <Heart className="h-10 w-10 text-green-600 mb-2" />
                 <h3 className="font-bold text-gray-800">Community-Centered</h3>
-                <p className="text-sm text-gray-600">Working with local communities to address their unique needs</p>
+                <p className="text-sm text-gray-700">Working with local communities to address their unique needs</p>
               </div>
             </div>
           </CardContent>
@@ -131,7 +131,7 @@ export default async function Mission() {
             <CheckCircle className="h-6 w-6" />
             Success Stories
           </h2>
-          <p className="text-gray-600 mb-8">Real impact in communities across Nepal</p>
+          <p className="text-gray-700 mb-8">Real impact in communities across Nepal</p>
         </div>
         
         {error ? (
@@ -145,9 +145,14 @@ export default async function Mission() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {stories.map((story) => (
               <Card key={story.id} className="overflow-hidden border-green-100 shadow-lg">
-                <div className="h-48 bg-green-100 flex items-center justify-center relative">
-                  <IconComponent name={story.icon} className="h-16 w-16 text-green-600 opacity-50" />
-                  <span className="absolute inset-0 flex items-center justify-center text-green-700 font-bold">Project Photo</span>
+                <div className="h-48 relative overflow-hidden">
+                  <img 
+                    src={story.imageUrl} 
+                    alt={story.title} 
+                    className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                  <IconComponent name={story.icon} className="absolute bottom-3 right-3 h-8 w-8 text-white drop-shadow-md" />
                 </div>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
@@ -159,7 +164,7 @@ export default async function Mission() {
                 <CardContent>
                   <p className="text-gray-700">{story.content}</p>
                 </CardContent>
-                <CardFooter className="text-sm text-gray-500">
+                <CardFooter className="text-sm text-gray-600">
                   <div className="flex items-center gap-1">
                     <IconComponent name={story.footer.icon} className="h-4 w-4 text-green-600" />
                     <span>{story.footer.metric}</span>
