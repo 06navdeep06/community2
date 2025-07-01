@@ -1,0 +1,55 @@
+'use client';
+
+"use client";
+
+import React, { useState, useEffect } from 'react';
+import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
+
+
+const AboutPage = () => {
+  const [images, setImages] = useState([
+    '/images/gallery/image1.jpg',
+    '/images/gallery/image2.jpg',
+    '/images/gallery/image3.jpg',
+    '/images/gallery/image4.jpg',
+    '/images/gallery/image5.jpg',
+    '/images/gallery/image6.jpg',
+  ]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setImages(prevImages => prevImages.map(image => `${image.split('?')[0]}?${Date.now()}`));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <ParallaxProvider>
+      <div className="relative">
+        <Parallax className="custom-class" y={[-20, 20]} tagOuter="figure">
+          <div className="bg-fixed bg-center bg-cover h-screen flex items-center justify-center" style={{ backgroundImage: 'url(/images/gallery/image1.jpg)' }}>
+            <h1 className="text-5xl font-bold text-white text-center drop-shadow-lg">Welcome to Our Creative Space</h1>
+          </div>
+        </Parallax>
+        <div className="container mx-auto px-4 py-16 bg-white shadow-lg rounded-lg -mt-20 relative z-10">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Our Stunning Gallery</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {images.map((image, index) => (
+              <Parallax key={index} y={[index % 2 === 0 ? -10 : 10, index % 2 === 0 ? 10 : -10]}>
+                <div className="overflow-hidden rounded-lg shadow-xl transform transition duration-500 hover:scale-105 hover:shadow-2xl">
+                  <img src={image} alt="Gallery Image" className="w-full h-64 object-cover" />
+                </div>
+              </Parallax>
+            ))}
+          </div>
+        </div>
+        <div className="py-16 bg-gray-100 text-center">
+          <h2 className="text-3xl font-bold mb-4">Explore More</h2>
+          <p className="text-lg text-gray-700">Discover the beauty and creativity in every corner.</p>
+        </div>
+      </div>
+    </ParallaxProvider>
+  );
+};
+
+export default AboutPage;

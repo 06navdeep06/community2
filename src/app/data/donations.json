@@ -1,0 +1,20 @@
+{
+  "pendingDonations": [
+    {
+      "name": "ineedbigboyw",
+      "amount": 2222,
+      "screenshot": "blank-white-background.jpg",
+      "timestamp": "2025-07-01T04:36:00.794Z",
+      "id": 1751344560794
+    },
+    {
+      "name": "222",
+      "amount": 2222,
+      "screenshot": "wp6819262.png",
+      "timestamp": "2025-07-01T04:36:27.041Z",
+      "id": 1751344587041
+    }
+  ],
+  "approvedDonations": [],
+  "raisedAmount": 0
+}
