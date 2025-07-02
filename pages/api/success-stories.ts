@@ -1,18 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-
-// Define the type for success stories
-export interface SuccessStory {
-  id: number;
-  icon: string;
-  title: string;
-  description: string;
-  content: string;
-  imageUrl: string;
-  footer: {
-    metric: string;
-    icon: string;
-  };
-}
+import type { SuccessStory } from '@/types/success-story';
 
 // Sample success stories data
 const successStories: SuccessStory[] = [

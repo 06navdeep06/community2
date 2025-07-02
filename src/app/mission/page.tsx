@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Heart, Droplet, School, Globe, CheckCircle, ArrowRight, Loader2 } from "lucide-react";
-import { SuccessStory } from "@/app/api/success-stories/route";
+import { SuccessStory } from "@/types/success-story";
 import ErrorDisplay from "./error-display";
 
 // Map of icon names to components
