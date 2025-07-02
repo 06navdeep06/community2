@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import type { SuccessStory } from '@/types/success-story';
+import type { SuccessStory } from '../../src/types/success-story';
 
 // Sample success stories data
 const successStories: SuccessStory[] = [
