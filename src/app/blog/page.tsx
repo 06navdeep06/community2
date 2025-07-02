@@ -21,6 +21,7 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [expandedPosts, setExpandedPosts] = useState<number[]>([]);
 
   // Fetch blog posts from the API
   useEffect(() => {
@@ -116,41 +117,53 @@ export default function Blog() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {filteredPosts.map((post) => (
-              <Card key={post.id} className="bg-green-800/70 border-green-700 hover:bg-green-700/80 transition-colors overflow-hidden">
-                {post.imageUrl && (
-                  <div className="h-48 overflow-hidden">
-                    <Image
-                      src={post.imageUrl}
-                      alt={post.title}
-                      width={700} // Placeholder, adjust as needed
-                      height={300} // Placeholder, adjust as needed
-                      className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
-                    />
-                  </div>
-                )}
-                <CardHeader>
-                  <CardTitle className="text-xl font-bold text-white">{post.title}</CardTitle>
-                  <div className="flex items-center text-green-300 text-sm mt-2">
-                    <CalendarIcon className="h-4 w-4 mr-1" />
-                    <span>{formatDate(post.date)}</span>
-                    <span className="mx-2">•</span>
-                    <span>By {post.author}</span>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-green-100 mb-4 line-clamp-3">
-                    {post.content}
-                  </p>
-                  <Link 
-                    href={`#post-${post.id}`} 
-                    className="inline-block text-green-400 hover:text-green-300 font-medium"
-                  >
-                    Read More →
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
+            {filteredPosts.map((post) => {
+              const isExpanded = expandedPosts.includes(post.id);
+              return (
+                <Card key={post.id} className="bg-green-800/70 border-green-700 hover:bg-green-700/80 transition-colors overflow-hidden">
+                  {post.imageUrl && (
+                    <div className="h-48 overflow-hidden">
+                      <Image
+                        src={post.imageUrl}
+                        alt={post.title}
+                        width={700}
+                        height={300}
+                        className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
+                      />
+                    </div>
+                  )}
+                  <CardHeader>
+                    <CardTitle className="text-xl font-bold text-white">{post.title}</CardTitle>
+                    <div className="flex items-center text-green-300 text-sm mt-2">
+                      <CalendarIcon className="h-4 w-4 mr-1" />
+                      <span>{formatDate(post.date)}</span>
+                      <span className="mx-2">•</span>
+                      <span>By {post.author}</span>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className={`text-green-100 mb-4 ${isExpanded ? '' : 'line-clamp-3'}`}>
+                      {post.content}
+                    </p>
+                    {isExpanded ? (
+                      <button
+                        onClick={() => setExpandedPosts(expandedPosts.filter(id => id !== post.id))}
+                        className="inline-block text-green-400 hover:text-green-300 font-medium focus:outline-none"
+                      >
+                        Show Less
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => setExpandedPosts([...expandedPosts, post.id])}
+                        className="inline-block text-green-400 hover:text-green-300 font-medium focus:outline-none"
+                      >
+                        Read More →
+                      </button>
+                    )}
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         )}
       </div>
