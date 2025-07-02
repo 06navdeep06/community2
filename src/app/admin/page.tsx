@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import Image from 'next/image';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
@@ -14,7 +15,6 @@ import {
   XCircle, 
   DollarSign, 
   Clock, 
-  Image, 
   FileText, 
   Edit, 
   Trash, 
@@ -428,7 +428,7 @@ export default function AdminDashboard() {
                           <p className="text-xl font-bold mt-1">Nrs {donation.amount.toLocaleString()}</p>
                           {donation.screenshot && (
                             <p className="text-sm text-green-300 flex items-center gap-1 mt-1">
-                              <Image className="h-3 w-3" />
+                              <Image src="/file.svg" alt="Screenshot" width={12} height={12} className="h-3 w-3" />
                               Screenshot: <a 
                                 href={`/${donation.screenshot}`} 
                                 target="_blank" 
@@ -602,7 +602,7 @@ export default function AdminDashboard() {
                               <p className="text-green-200 mt-2 line-clamp-2">{post.content}</p>
                               {post.imageUrl && (
                                 <p className="text-sm text-green-300 flex items-center gap-1 mt-1">
-                                  <Image className="h-3 w-3" />
+                                  <Image src="/file.svg" alt="Blog post image" width={12} height={12} className="h-3 w-3" />
                                   Image: <a 
                                     href={post.imageUrl} 
                                     target="_blank" 

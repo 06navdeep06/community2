@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Image, Loader2 } from "lucide-react";
+import { Search, Image as ImageIcon, Loader2 } from "lucide-react";
+import Image from 'next/image';
 
 interface UnsplashImage {
   id: string;
@@ -247,10 +248,12 @@ export default function UnsplashImagePicker({ onImageSelect, selectedImageUrl }:
               }`}
               onClick={() => onImageSelect(image.urls.regular)}
             >
-              <img 
+              <Image 
                 src={image.urls.small} 
                 alt={image.alt_description || 'Unsplash image'} 
                 className="w-full h-32 object-cover"
+                width={400}
+                height={300}
               />
               {selectedImageUrl === image.urls.regular && (
                 <div className="absolute inset-0 bg-green-500 bg-opacity-20 flex items-center justify-center">
@@ -262,7 +265,7 @@ export default function UnsplashImagePicker({ onImageSelect, selectedImageUrl }:
         </div>
       ) : !loading && searchQuery && (
         <div className="text-center py-4 text-green-300">
-          <Image className="h-12 w-12 mx-auto mb-2 text-green-400 opacity-50" />
+          <ImageIcon className="h-12 w-12 mx-auto mb-2 text-green-400 opacity-50" />
           <p>No images found. Try a different search term.</p>
         </div>
       )}
@@ -271,10 +274,12 @@ export default function UnsplashImagePicker({ onImageSelect, selectedImageUrl }:
         <div className="mt-4">
           <p className="text-sm text-green-300 mb-2">Selected image:</p>
           <div className="relative rounded-md overflow-hidden border border-green-600">
-            <img 
+            <Image 
               src={selectedImageUrl} 
               alt="Selected image" 
               className="w-full h-40 object-cover"
+              width={800}
+              height={400}
             />
           </div>
         </div>

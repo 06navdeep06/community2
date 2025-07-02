@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -20,6 +21,7 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [expandedPosts, setExpandedPosts] = useState<number[]>([]);
 
   // Fetch blog posts from the API
   useEffect(() => {
@@ -119,9 +121,11 @@ export default function Blog() {
               <Card key={post.id} className="bg-green-800/70 border-green-700 hover:bg-green-700/80 transition-colors overflow-hidden">
                 {post.imageUrl && (
                   <div className="h-48 overflow-hidden">
-                    <img 
-                      src={post.imageUrl} 
-                      alt={post.title} 
+                    <Image
+                      src={post.imageUrl}
+                      alt={post.title}
+                      width={700} // Placeholder, adjust as needed
+                      height={300} // Placeholder, adjust as needed
                       className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
                     />
                   </div>

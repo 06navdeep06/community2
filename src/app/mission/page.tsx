@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Heart, Droplet, School, Globe, CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 import { SuccessStory } from "@/app/api/success-stories/route";
@@ -146,9 +147,11 @@ export default async function Mission() {
             {stories.map((story) => (
               <Card key={story.id} className="overflow-hidden border-green-100 shadow-lg">
                 <div className="h-48 relative overflow-hidden">
-                  <img 
-                    src={story.imageUrl} 
-                    alt={story.title} 
+                  <Image
+                    src={story.imageUrl}
+                    alt={story.title}
+                    width={700} // Placeholder, adjust as needed
+                    height={300} // Placeholder, adjust as needed
                     className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>

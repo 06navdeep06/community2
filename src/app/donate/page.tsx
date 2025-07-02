@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -54,8 +54,16 @@ export default function Donate() {
     setError('');
     setSuccess('');
     
-    if (!donation.amount || !donation.name) {
-      setError("Please fill in all required fields.");
+    if (!donation.name) {
+      setError("Please enter your name.");
+      return;
+    }
+    if (!donation.amount) {
+      setError("Please enter a donation amount.");
+      return;
+    }
+    if (!donation.screenshot) {
+      setError("Please attach a payment screenshot as proof.");
       return;
     }
     
@@ -177,7 +185,7 @@ export default function Donate() {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Your Name</Label>
+                <Label htmlFor="name">Your Name <span className="text-red-400">*</span></Label>
                 <Input
                   id="name"
                   type="text"
@@ -191,7 +199,7 @@ export default function Donate() {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="amount">Donation Amount (Nrs)</Label>
+                <Label htmlFor="amount">Donation Amount (Nrs) <span className="text-red-400">*</span></Label>
                 <Input
                   id="amount"
                   type="number"
@@ -207,7 +215,7 @@ export default function Donate() {
               <div className="space-y-2">
                 <Label htmlFor="screenshot" className="flex items-center gap-2">
                   <Upload className="h-4 w-4" />
-                  Payment Screenshot (Optional)
+                  Payment Screenshot <span className="text-red-400">*</span>
                 </Label>
                 <Input
                   id="screenshot"
@@ -216,8 +224,9 @@ export default function Donate() {
                   onChange={handleFileChange}
                   className="bg-green-700 border-green-600 text-white file:bg-green-600 file:text-white file:border-0 cursor-pointer"
                   disabled={submitting}
+                  required
                 />
-                <p className="text-xs text-green-300">Upload a screenshot of your payment for verification</p>
+                <p className="text-xs text-green-300">Upload a screenshot of your payment for verification (required)</p>
               </div>
               
               <Button 

@@ -1,11 +1,20 @@
 "use client";
 
 import { Parallax, ParallaxProvider, ParallaxBanner } from 'react-scroll-parallax';
-import Image from 'next/image';
 import Link from 'next/link';
-import { Globe, FileText, Heart } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <ParallaxProvider>
       <div className="min-h-screen">
@@ -25,7 +34,7 @@ export default function Home() {
               children: (
                 <div className="absolute inset-0 bg-gradient-to-b from-green-900/70 to-green-800/90" />
               ),
-              speed: -5,
+              speed: -5
             },
             {
               children: (

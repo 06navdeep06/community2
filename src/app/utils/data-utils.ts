@@ -43,7 +43,7 @@ export function getDonationsData(): DonationsData {
     const filePath = path.join(dataDirectory, 'donations.json');
     const fileData = fs.readFileSync(filePath, 'utf8');
     return JSON.parse(fileData);
-  } catch (error) {
+  } catch {
     // If the file doesn't exist or there's an error, return default data
     return {
       pendingDonations: [],
@@ -58,8 +58,8 @@ export function saveDonationsData(data: DonationsData): void {
   try {
     const filePath = path.join(dataDirectory, 'donations.json');
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
-  } catch (error) {
-    console.error('Error saving donations data:', error);
+  } catch {
+    console.error('Error saving donations data:');
     throw new Error('Failed to save donations data');
   }
 }
@@ -70,7 +70,7 @@ export function getBlogData(): BlogData {
     const filePath = path.join(dataDirectory, 'blog-posts.json');
     const fileData = fs.readFileSync(filePath, 'utf8');
     return JSON.parse(fileData);
-  } catch (error) {
+  } catch {
     // If the file doesn't exist or there's an error, return default data
     return {
       posts: []
@@ -83,8 +83,8 @@ export function saveBlogData(data: BlogData): void {
   try {
     const filePath = path.join(dataDirectory, 'blog-posts.json');
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
-  } catch (error) {
-    console.error('Error saving blog data:', error);
+  } catch {
+    console.error('Error saving blog data:');
     throw new Error('Failed to save blog data');
   }
 }
@@ -149,7 +149,7 @@ export function getAdminData(): AdminData {
     const filePath = path.join(dataDirectory, 'admin.json');
     const fileData = fs.readFileSync(filePath, 'utf8');
     return JSON.parse(fileData);
-  } catch (error) {
+  } catch {
     // If the file doesn't exist or there's an error, return default data
     return {
       username: 'admin',
