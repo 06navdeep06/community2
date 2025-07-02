@@ -21,7 +21,6 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const [expandedPosts, setExpandedPosts] = useState<number[]>([]);
 
   // Fetch blog posts from the API
   useEffect(() => {
